@@ -9,7 +9,6 @@ const contactsSlice = createSlice({
     error: null,
   },
   reducers: {
-    // Додай тут свої ред'юсери, якщо вони потрібні, наприклад:
     addContact: (state, action) => {
       state.items.push(action.payload);
     },
@@ -18,7 +17,6 @@ const contactsSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    // Очищення контактів при логауті
     builder.addCase(logout.fulfilled, (state) => {
       state.items = [];
       state.isLoading = false;
@@ -27,8 +25,6 @@ const contactsSlice = createSlice({
   },
 });
 
-// Іменний експорт ред'юсера
 export const contactsReducer = contactsSlice.reducer;
 
-// Експорт за замовчуванням
 export default contactsReducer;

@@ -8,14 +8,13 @@ import HomePage from './pages/HomePage/HomePage';
 import RegistrationPage from './pages/RegistrationPage/RegistrationPage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import ContactsPage from './pages/ContactsPage/ContactsPage';
-import { refreshUser } from './redux/auth/operations'; // Операція для оновлення користувача
-import { selectIsRefreshing } from './redux/auth/selectors'; // Селектор для перевірки стану
+import { refreshUser } from './redux/auth/operations';
+import { selectIsRefreshing } from './redux/auth/selectors';
 
 const App = () => {
   const dispatch = useDispatch();
-  const isRefreshing = useSelector(selectIsRefreshing); // Чи виконується refresh
+  const isRefreshing = useSelector(selectIsRefreshing);
 
-  // Оновлюємо користувача (якщо є токен)
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
@@ -25,10 +24,7 @@ const App = () => {
   ) : (
     <Routes>
       <Route path="/" element={<Layout />}>
-        {/* Головна сторінка */}
         <Route index element={<HomePage />} />
-
-        {/* Публічні маршрути */}
         <Route
           path="/register"
           element={<RestrictedRoute component={RegistrationPage} redirectTo="/contacts" />}
@@ -37,8 +33,6 @@ const App = () => {
           path="/login"
           element={<RestrictedRoute component={LoginPage} redirectTo="/contacts" />}
         />
-
-        {/* Приватний маршрут */}
         <Route
           path="/contacts"
           element={<PrivateRoute component={ContactsPage} />}

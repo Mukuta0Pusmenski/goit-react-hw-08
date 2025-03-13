@@ -11,5 +11,4 @@ export const store = configureStore({
   },
 });
 
-// Експорт за замовчуванням для використання у main.jsx
 export default store;
