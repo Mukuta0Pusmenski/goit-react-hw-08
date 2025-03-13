@@ -3,16 +3,10 @@ import contactsReducer from './contacts/slice';
 import filtersReducer from './filters/slice';
 import authReducer from './auth/slice';
 
-const store = configureStore({
+export const store = configureStore({
   reducer: {
-    auth: authReducer,
     contacts: contactsReducer,
     filters: filtersReducer,
+    auth: authReducer,
   },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: false,
-    }),
 });
-
-export default store;

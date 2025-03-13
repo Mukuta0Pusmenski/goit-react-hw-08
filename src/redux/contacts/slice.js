@@ -9,16 +9,26 @@ const contactsSlice = createSlice({
     error: null,
   },
   reducers: {
-    // Інші редьюсери
+    // Додай тут свої ред'юсери, якщо вони потрібні, наприклад:
+    addContact: (state, action) => {
+      state.items.push(action.payload);
+    },
+    removeContact: (state, action) => {
+      state.items = state.items.filter(contact => contact.id !== action.payload);
+    },
   },
   extraReducers: (builder) => {
-    builder
-      .addCase(logout.fulfilled, (state) => {
-        state.items = []; // Очищення контактів
-        state.isLoading = false;
-        state.error = null;
-      });
+    // Очищення контактів при логауті
+    builder.addCase(logout.fulfilled, (state) => {
+      state.items = [];
+      state.isLoading = false;
+      state.error = null;
+    });
   },
 });
 
+// Іменний експорт ред'юсера
 export const contactsReducer = contactsSlice.reducer;
+
+// Експорт за замовчуванням
+export default contactsReducer;
