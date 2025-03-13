@@ -22,21 +22,17 @@ const LoginForm = () => {
     >
       {() => (
         <Form className={styles.form}>
-          <label className={styles.label}>
+          <label>
             Email:
             <Field type="email" name="email" className={styles.input} />
           </label>
           <ErrorMessage name="email" component="div" className={styles.error} />
-
-          <label className={styles.label}>
+          <label>
             Password:
             <Field type="password" name="password" className={styles.input} />
           </label>
           <ErrorMessage name="password" component="div" className={styles.error} />
-
-          <button type="submit" className={styles.button}>
-            Log In
-          </button>
+          <button type="submit" className={styles.button}>Log In</button>
         </Form>
       )}
     </Formik>

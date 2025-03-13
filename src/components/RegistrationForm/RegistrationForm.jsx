@@ -23,27 +23,22 @@ const RegistrationForm = () => {
     >
       {() => (
         <Form className={styles.form}>
-          <label className={styles.label}>
+          <label>
             Name:
             <Field type="text" name="name" className={styles.input} />
           </label>
           <ErrorMessage name="name" component="div" className={styles.error} />
-
-          <label className={styles.label}>
+          <label>
             Email:
             <Field type="email" name="email" className={styles.input} />
           </label>
           <ErrorMessage name="email" component="div" className={styles.error} />
-
-          <label className={styles.label}>
+          <label>
             Password:
             <Field type="password" name="password" className={styles.input} />
           </label>
           <ErrorMessage name="password" component="div" className={styles.error} />
-
-          <button type="submit" className={styles.button}>
-            Register
-          </button>
+          <button type="submit" className={styles.button}>Register</button>
         </Form>
       )}
     </Formik>
