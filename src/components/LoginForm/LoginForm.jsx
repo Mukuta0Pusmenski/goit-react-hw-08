@@ -9,3 +9,5 @@ const handleSubmit = async (values, { resetForm }) => {
     toast.error('Login failed. Please check your credentials.');
   }
 };
+
+export default LoginForm;
