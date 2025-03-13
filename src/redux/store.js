@@ -10,3 +10,6 @@ export const store = configureStore({
     auth: authReducer,
   },
 });
+
+// Експорт за замовчуванням для використання у main.jsx
+export default store;
