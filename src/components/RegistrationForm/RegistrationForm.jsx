@@ -1,11 +1,50 @@
-import toast from 'react-hot-toast';
+import React from 'react';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 
-const handleSubmit = async (values, { resetForm }) => {
-  try {
-    await dispatch(register(values));
-    toast.success('Registration successful!');
+const RegistrationSchema = Yup.object().shape({
+  name: Yup.string().required('Name is required'),
+  email: Yup.string().email('Invalid email').required('Email is required'),
+  password: Yup.string().min(6, 'Password must be at least 6 characters').required('Password is required'),
+});
+
+const RegistrationForm = () => {
+  const handleSubmit = (values, { resetForm }) => {
+    console.log('Registration attempt:', values);
     resetForm();
-  } catch (error) {
-    toast.error('Registration failed. Please try again.');
-  }
+  };
+
+  return (
+    <Formik
+      initialValues={{ name: '', email: '', password: '' }}
+      validationSchema={RegistrationSchema}
+      onSubmit={handleSubmit}
+    >
+      {() => (
+        <Form>
+          <label>
+            Name:
+            <Field type="text" name="name" />
+          </label>
+          <ErrorMessage name="name" component="div" />
+
+          <label>
+            Email:
+            <Field type="email" name="email" />
+          </label>
+          <ErrorMessage name="email" component="div" />
+
+          <label>
+            Password:
+            <Field type="password" name="password" />
+          </label>
+          <ErrorMessage name="password" component="div" />
+
+          <button type="submit">Register</button>
+        </Form>
+      )}
+    </Formik>
+  );
 };
+
+export default RegistrationForm;

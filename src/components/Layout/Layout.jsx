@@ -1,5 +1,6 @@
+import React from 'react';
 import { Outlet } from 'react-router-dom';
-import AppBar from '../AppBar/AppBar'; // Компонент шапки (зробимо пізніше)
+import AppBar from '../AppBar/AppBar';
 
 const Layout = () => {
   return (

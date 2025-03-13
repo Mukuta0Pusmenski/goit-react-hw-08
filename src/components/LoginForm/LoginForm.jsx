@@ -1,7 +1,6 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import styles from './LoginForm.module.css';
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Email is required'),
@@ -21,22 +20,20 @@ const LoginForm = () => {
       onSubmit={handleSubmit}
     >
       {() => (
-        <Form className={styles.form}>
-          <label className={styles.label}>
+        <Form>
+          <label>
             Email:
-            <Field type="email" name="email" className={styles.input} />
+            <Field type="email" name="email" />
           </label>
-          <ErrorMessage name="email" component="div" className={styles.error} />
+          <ErrorMessage name="email" component="div" />
 
-          <label className={styles.label}>
+          <label>
             Password:
-            <Field type="password" name="password" className={styles.input} />
+            <Field type="password" name="password" />
           </label>
-          <ErrorMessage name="password" component="div" className={styles.error} />
+          <ErrorMessage name="password" component="div" />
 
-          <button type="submit" className={styles.button}>
-            Login
-          </button>
+          <button type="submit">Log In</button>
         </Form>
       )}
     </Formik>
