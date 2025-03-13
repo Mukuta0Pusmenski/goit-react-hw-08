@@ -1,6 +1,7 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import styles from './RegistrationForm.module.css';
 
 const RegistrationSchema = Yup.object().shape({
   name: Yup.string().required('Name is required'),
@@ -21,26 +22,28 @@ const RegistrationForm = () => {
       onSubmit={handleSubmit}
     >
       {() => (
-        <Form>
-          <label>
+        <Form className={styles.form}>
+          <label className={styles.label}>
             Name:
-            <Field type="text" name="name" />
+            <Field type="text" name="name" className={styles.input} />
           </label>
-          <ErrorMessage name="name" component="div" />
+          <ErrorMessage name="name" component="div" className={styles.error} />
 
-          <label>
+          <label className={styles.label}>
             Email:
-            <Field type="email" name="email" />
+            <Field type="email" name="email" className={styles.input} />
           </label>
-          <ErrorMessage name="email" component="div" />
+          <ErrorMessage name="email" component="div" className={styles.error} />
 
-          <label>
+          <label className={styles.label}>
             Password:
-            <Field type="password" name="password" />
+            <Field type="password" name="password" className={styles.input} />
           </label>
-          <ErrorMessage name="password" component="div" />
+          <ErrorMessage name="password" component="div" className={styles.error} />
 
-          <button type="submit">Register</button>
+          <button type="submit" className={styles.button}>
+            Register
+          </button>
         </Form>
       )}
     </Formik>
