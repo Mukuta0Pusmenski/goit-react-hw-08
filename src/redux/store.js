@@ -5,8 +5,8 @@ import filtersReducer from './filters/slice';
 
 export const store = configureStore({
   reducer: {
-    auth: authReducer, // Відповідає за стан авторизації
-    contacts: contactsReducer, // Відповідає за контакти
-    filters: filtersReducer, // Відповідає за фільтри
+    auth: authReducer,
+    contacts: contactsReducer,
+    filters: filtersReducer,
   },
 });
