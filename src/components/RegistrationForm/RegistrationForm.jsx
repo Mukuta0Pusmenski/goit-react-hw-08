@@ -66,7 +66,7 @@ const RegistrationForm = () => {
   const handleSubmit = async (values, { resetForm }) => {
     const result = await dispatch(register(values));
     if (register.fulfilled.match(result)) {
-      navigate('/contacts'); // Перенаправляє на контакти після успішної реєстрації
+      navigate('/contacts'); // Перенаправляє на контакти
     }
     resetForm();
   };
