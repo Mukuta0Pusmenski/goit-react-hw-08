@@ -1,31 +1,29 @@
-// import React from 'react';
-
-// const ContactsPage = () => {
-//   return <h1>Contacts Page</h1>;
-// };
-
-// export default ContactsPage;
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchContacts } from '../../redux/contacts/operations';
-import { selectContacts } from '../../redux/contacts/selectors';
+import ContactForm from '../../components/ContactForm/ContactForm';
+import SearchBox from '../../components/Filter/Filter'; // Якщо компонент називається "Filter"
+import ContactList from '../../components/ContactList/ContactList';
+import { selectContacts } from '../../redux/contacts/selectors'; // Перевірте правильність шляху
 
 const ContactsPage = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(selectContacts);
+  const contacts = useSelector(selectContacts); // Отримуємо контакти з Redux
 
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(fetchContacts()); // Завантажуємо контакти після рендера
   }, [dispatch]);
 
   return (
-    <div>
-      <h1>Contacts</h1>
-      <ul>
-        {contacts.map(contact => (
-          <li key={contact.id}>{contact.name}: {contact.number}</li>
-        ))}
-      </ul>
+    <div className="App">
+      <h1>Phonebook</h1>
+      <ContactForm /> {/* Форма для додавання контакту */}
+      <SearchBox /> {/* Поле для пошуку контактів */}
+      {contacts.length > 0 ? (
+        <ContactList /> {/* Відображення списку контактів */}
+      ) : (
+        <p>No contacts available. Add your first contact!</p>
+      )}
     </div>
   );
 };
