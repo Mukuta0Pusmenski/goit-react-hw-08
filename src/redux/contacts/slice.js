@@ -51,3 +51,7 @@ extraReducers: (builder) => {
       state.items = state.items.filter(contact => contact.id !== action.payload);
     });
 }
+
+const contactsReducer = contactsSlice.reducer;
+export default contactsReducer;
+
