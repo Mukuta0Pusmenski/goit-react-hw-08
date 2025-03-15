@@ -7,7 +7,7 @@
 // export default ContactsPage;
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { fetchContacts } from '../../redux/contactsOps';
+import { fetchContacts } from '../../redux/contacts/operations';
 import { selectContacts } from '../../redux/contacts/selectors';
 
 const ContactsPage = () => {
