@@ -9,7 +9,7 @@ const RegistrationForm = () => {
         onSubmit={handleSubmit}
       >
         {() => (
-          <Form className="form">
+          <Form className={styles.form}>
             <label>Name:</label>
             <Field type="text" name="name" className={styles.input} />
             <ErrorMessage name="name" component="div" className={styles.error} />
