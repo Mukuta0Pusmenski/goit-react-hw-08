@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 axios.defaults.baseURL = 'https://connections-api.goit.global';
 
-// Реєстрація користувача
+// Запит на реєстрацію
 export const register = createAsyncThunk('auth/register', async (credentials, thunkAPI) => {
   try {
     const { data } = await axios.post('/users/signup', credentials);
@@ -14,7 +14,7 @@ export const register = createAsyncThunk('auth/register', async (credentials, th
   }
 });
 
-// Логін користувача
+// Запит на логін
 export const login = createAsyncThunk('auth/login', async (credentials, thunkAPI) => {
   try {
     const { data } = await axios.post('/users/login', credentials);
@@ -25,7 +25,7 @@ export const login = createAsyncThunk('auth/login', async (credentials, thunkAPI
   }
 });
 
-// Вихід із системи
+// Запит на вихід
 export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     await axios.post('/users/logout');
@@ -35,7 +35,7 @@ export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   }
 });
 
-// Оновлення поточного користувача
+// Оновлення користувача
 export const refreshUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
   const state = thunkAPI.getState();
   const token = state.auth.token;
@@ -53,5 +53,5 @@ export const refreshUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) 
   }
 });
 
-// Єдиний експорт функцій
+// Єдиний експорт
 export { register, login, logout, refreshUser };
