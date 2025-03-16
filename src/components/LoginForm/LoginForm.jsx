@@ -146,7 +146,6 @@
 import React from 'react';
 
 const LoginForm = () => {
-  console.log('Rendering LoginForm'); // Лог для перевірки
   return (
     <form>
       <label>
@@ -163,4 +162,5 @@ const LoginForm = () => {
 };
 
 export default LoginForm;
+
 

@@ -108,7 +108,6 @@
 import React from 'react';
 
 const RegistrationForm = () => {
-  console.log('Rendering RegistrationForm'); // Лог для перевірки
   return (
     <form>
       <label>
@@ -129,4 +128,3 @@ const RegistrationForm = () => {
 };
 
 export default RegistrationForm;
-
