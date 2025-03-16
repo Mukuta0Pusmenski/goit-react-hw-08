@@ -80,5 +80,5 @@ export const deleteContact = createAsyncThunk('contacts/deleteContact', async (c
 });
 
 // Експорт усіх функцій
-export { fetchContacts, addContact, deleteContact };
+// export { fetchContacts, addContact, deleteContact };
 
