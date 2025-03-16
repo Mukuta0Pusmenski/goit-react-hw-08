@@ -96,44 +96,58 @@
 //   }
 // });
 
-import axios from 'axios';
+// import axios from 'axios';
+// import { createAsyncThunk } from '@reduxjs/toolkit';
+
+// // Запит на реєстрацію
+// export const register = createAsyncThunk('auth/register', async (credentials, thunkAPI) => {
+//   try {
+//     const response = await axios.post('/users/signup', credentials);
+//     axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
+//     return response.data; // Повертайте користувача та токен
+//   } catch (error) {
+//     return thunkAPI.rejectWithValue(error.message);
+//   }
+// });
+
+// // Запит на логін
+// export const login = createAsyncThunk('auth/login', async (credentials, thunkAPI) => {
+//   try {
+//     const response = await axios.post('/users/login', credentials);
+//     axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
+//     return response.data; // Повертайте користувача та токен
+//   } catch (error) {
+//     return thunkAPI.rejectWithValue(error.message);
+//   }
+// });
+
+// // Запит на оновлення користувача
+// export const refreshUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
+//   const state = thunkAPI.getState();
+//   const persistedToken = state.auth.token;
+
+//   if (!persistedToken) {
+//     return thunkAPI.rejectWithValue('No token available');
+//   }
+
+//   try {
+//     axios.defaults.headers.common['Authorization'] = `Bearer ${persistedToken}`;
+//     const response = await axios.get('/users/current');
+//     return response.data; // Повертайте користувача
+//   } catch (error) {
+//     return thunkAPI.rejectWithValue(error.message);
+//   }
+// });
+
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
-// Запит на реєстрацію
-export const register = createAsyncThunk('auth/register', async (credentials, thunkAPI) => {
+// Логіка виходу з системи
+export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
-    const response = await axios.post('/users/signup', credentials);
-    axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
-    return response.data; // Повертайте користувача та токен
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
-  }
-});
-
-// Запит на логін
-export const login = createAsyncThunk('auth/login', async (credentials, thunkAPI) => {
-  try {
-    const response = await axios.post('/users/login', credentials);
-    axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
-    return response.data; // Повертайте користувача та токен
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
-  }
-});
-
-// Запит на оновлення користувача
-export const refreshUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
-  const state = thunkAPI.getState();
-  const persistedToken = state.auth.token;
-
-  if (!persistedToken) {
-    return thunkAPI.rejectWithValue('No token available');
-  }
-
-  try {
-    axios.defaults.headers.common['Authorization'] = `Bearer ${persistedToken}`;
-    const response = await axios.get('/users/current');
-    return response.data; // Повертайте користувача
+    // Видаляємо токен із заголовків
+    delete axios.defaults.headers.common['Authorization'];
+    return; // Ви можете очищувати стан, наприклад, у slice
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
