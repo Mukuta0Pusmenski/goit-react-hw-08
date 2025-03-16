@@ -14,7 +14,6 @@ export const register = createAsyncThunk('auth/register', async (credentials, th
   }
 });
 
-
 // Логін користувача
 export const login = createAsyncThunk('auth/login', async (credentials, thunkAPI) => {
   try {
@@ -26,7 +25,7 @@ export const login = createAsyncThunk('auth/login', async (credentials, thunkAPI
   }
 });
 
-// Вихід користувача
+// Вихід із системи
 export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     await axios.post('/users/logout');
@@ -36,7 +35,7 @@ export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   }
 });
 
-// Оновлення користувача
+// Оновлення поточного користувача
 export const refreshUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
   const state = thunkAPI.getState();
   const token = state.auth.token;
