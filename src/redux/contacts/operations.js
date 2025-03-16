@@ -52,10 +52,33 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 // Отримати всі контакти
 export const fetchContacts = createAsyncThunk('contacts/fetchAll', async (_, thunkAPI) => {
   try {
-    const { data } = await axios.get('/contacts'); // Автоматично додасть токен через interceptors
+    const { data } = await axios.get('/contacts');
     return data;
   } catch (error) {
-    console.error('Fetch contacts error:', error.response?.data || error.message); // Діагностика
-    return thunkAPI.rejectWithValue(error.response?.data || error.message);
+    return thunkAPI.rejectWithValue(error.message);
   }
 });
+
+// Додати новий контакт
+export const addContact = createAsyncThunk('contacts/addContact', async (contact, thunkAPI) => {
+  try {
+    const { data } = await axios.post('/contacts', contact);
+    return data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
+
+// Видалити контакт
+export const deleteContact = createAsyncThunk('contacts/deleteContact', async (contactId, thunkAPI) => {
+  try {
+    await axios.delete(`/contacts/${contactId}`);
+    return contactId;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
+
+// Експорт усіх функцій
+export { fetchContacts, addContact, deleteContact };
+
