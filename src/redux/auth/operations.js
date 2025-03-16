@@ -54,4 +54,6 @@ export const refreshUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) 
 });
 
 // Єдиний експорт функцій
-export { register, login, logout, refreshUser };
+// export { register, login, logout, refreshUser };
+
+// сука
