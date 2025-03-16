@@ -39,8 +39,51 @@
 // export default contactsSlice.reducer;
 
 
+// import { createSlice } from '@reduxjs/toolkit';
+// import { fetchContacts, addContact, deleteContact } from './operations';
+
+// const contactsSlice = createSlice({
+//   name: 'contacts',
+//   initialState: {
+//     items: [],
+//     isLoading: false,
+//     error: null,
+//   },
+//   reducers: {
+//     resetContacts: (state) => {
+//       state.items = [];
+//     },
+//   },
+//   extraReducers: (builder) => {
+//     builder
+//       .addCase(fetchContacts.pending, (state) => {
+//         state.isLoading = true;
+//         state.error = null;
+//       })
+//       .addCase(fetchContacts.fulfilled, (state, action) => {
+//         state.isLoading = false;
+//         state.items = action.payload;
+//       })
+//       .addCase(fetchContacts.rejected, (state, action) => {
+//         state.isLoading = false;
+//         state.error = action.payload;
+//       })
+//       .addCase(addContact.fulfilled, (state, action) => {
+//         state.items.push(action.payload);
+//       })
+//       .addCase(deleteContact.fulfilled, (state, action) => {
+//         state.items = state.items.filter(contact => contact.id !== action.payload);
+//       });
+//   },
+// });
+
+// export const { resetContacts } = contactsSlice.actions;
+// export const contactsReducer = contactsSlice.reducer;
+
+
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchContacts, addContact, deleteContact } from './operations';
+import { logout } from '../auth/operations';
 
 const contactsSlice = createSlice({
   name: 'contacts',
@@ -49,11 +92,7 @@ const contactsSlice = createSlice({
     isLoading: false,
     error: null,
   },
-  reducers: {
-    resetContacts: (state) => {
-      state.items = [];
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchContacts.pending, (state) => {
@@ -72,10 +111,12 @@ const contactsSlice = createSlice({
         state.items.push(action.payload);
       })
       .addCase(deleteContact.fulfilled, (state, action) => {
-        state.items = state.items.filter(contact => contact.id !== action.payload);
+        state.items = state.items.filter((contact) => contact.id !== action.payload);
+      })
+      .addCase(logout.fulfilled, (state) => {
+        state.items = []; // Очищення контактів після виходу
       });
   },
 });
 
-export const { resetContacts } = contactsSlice.actions;
 export const contactsReducer = contactsSlice.reducer;
