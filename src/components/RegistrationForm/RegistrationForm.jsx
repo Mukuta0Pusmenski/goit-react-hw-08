@@ -129,7 +129,6 @@
 
 // export default RegistrationForm;
 
-import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { register } from '../../redux/auth/operations';
@@ -147,7 +146,7 @@ const RegistrationForm = () => {
 
     const result = await dispatch(register({ name, email, password }));
     if (register.fulfilled.match(result)) {
-      navigate('/contacts'); // Перенаправлення до контактів
+      navigate('/contacts'); // Перенаправлення на сторінку контактів
     }
     form.reset();
   };
@@ -156,15 +155,15 @@ const RegistrationForm = () => {
     <form onSubmit={handleSubmit}>
       <label>
         Name:
-        <input type="text" name="name" required />
+        <input type="text" name="name" placeholder="Name" required />
       </label>
       <label>
         Email:
-        <input type="email" name="email" required />
+        <input type="email" name="email" placeholder="Email" required />
       </label>
       <label>
         Password:
-        <input type="password" name="password" required />
+        <input type="password" name="password" placeholder="Password" required />
       </label>
       <button type="submit">Register</button>
     </form>

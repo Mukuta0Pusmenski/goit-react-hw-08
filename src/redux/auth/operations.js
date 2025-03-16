@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 axios.defaults.baseURL = 'https://connections-api.goit.global';
 
-// Запит на реєстрацію
+// Реєстрація користувача
 export const register = createAsyncThunk('auth/register', async (credentials, thunkAPI) => {
   try {
     const { data } = await axios.post('/users/signup', credentials);
@@ -53,7 +53,5 @@ export const refreshUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) 
   }
 });
 
-// Єдиний експорт функцій
-// export { register, login, logout, refreshUser };
-
-// сука
+// Ось єдиний експорт, і він не дублюється
+export { login, logout, refreshUser };
