@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import { refreshUser } from './redux/auth/operations';
 import { selectIsRefreshing } from './redux/auth/selectors';
 import Layout from './components/Layout/Layout';
-import HomePage from './pages/HomePage';
+import HomePage from './pages/HomePage/HomePage';
 import LoginPage from './pages/LoginPage';
 import RegistrationPage from './pages/RegistrationPage';
 import ContactsPage from './pages/ContactsPage';
