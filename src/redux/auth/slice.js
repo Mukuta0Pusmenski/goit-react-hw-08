@@ -15,11 +15,13 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(register.fulfilled, (state, action) => {
+        console.log('Register success payload:', action.payload); // Лог для перевірки
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
       })
       .addCase(login.fulfilled, (state, action) => {
+        console.log('Login success payload:', action.payload); // Лог для перевірки
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
