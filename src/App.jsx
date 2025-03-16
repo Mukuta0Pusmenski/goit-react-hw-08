@@ -20,7 +20,7 @@ const App = () => {
   }, [dispatch]);
 
   return isRefreshing ? (
-    <p>Loading...</p> // Показуємо спінер чи текст під час завантаження
+    <p>Loading...</p> // Показуємо спінер чи текст під час завантаже
   ) : (
     <Routes>
       <Route path="/" element={<Layout />}>
