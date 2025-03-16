@@ -51,7 +51,7 @@ const contactsSlice = createSlice({
   },
   reducers: {
     resetContacts: (state) => {
-      state.items = []; // Очищення контактів при виході
+      state.items = [];
     },
   },
   extraReducers: (builder) => {
