@@ -105,22 +105,66 @@
 
 // export default RegistrationForm;
 
+// import React from 'react';
+
+// const RegistrationForm = () => {
+//   return (
+//     <form>
+//       <label>
+//         Name:
+//         <input type="text" name="name" />
+//       </label>
+//       <label>
+//         Email:
+//         <input type="email" name="email" />
+//       </label>
+//       <label>
+//         Password:
+//         <input type="password" name="password" />
+//       </label>
+//       <button type="submit">Register</button>
+//     </form>
+//   );
+// };
+
+// export default RegistrationForm;
+
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { register } from '../../redux/auth/operations';
 
 const RegistrationForm = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.elements.name.value;
+    const email = form.elements.email.value;
+    const password = form.elements.password.value;
+
+    const result = await dispatch(register({ name, email, password }));
+    if (register.fulfilled.match(result)) {
+      navigate('/contacts'); // Перенаправлення до контактів
+    }
+    form.reset();
+  };
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <label>
         Name:
-        <input type="text" name="name" />
+        <input type="text" name="name" required />
       </label>
       <label>
         Email:
-        <input type="email" name="email" />
+        <input type="email" name="email" required />
       </label>
       <label>
         Password:
-        <input type="password" name="password" />
+        <input type="password" name="password" required />
       </label>
       <button type="submit">Register</button>
     </form>

@@ -143,18 +143,57 @@
 
 // export default LoginForm;
 
+// import React from 'react';
+
+// const LoginForm = () => {
+//   return (
+//     <form>
+//       <label>
+//         Email:
+//         <input type="email" name="email" />
+//       </label>
+//       <label>
+//         Password:
+//         <input type="password" name="password" />
+//       </label>
+//       <button type="submit">Log In</button>
+//     </form>
+//   );
+// };
+
+// export default LoginForm;
+
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { login } from '../../redux/auth/operations';
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.elements.email.value;
+    const password = form.elements.password.value;
+
+    const result = await dispatch(login({ email, password }));
+    if (login.fulfilled.match(result)) {
+      navigate('/contacts'); // Перенаправлення до контактів
+    }
+    form.reset();
+  };
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <label>
         Email:
-        <input type="email" name="email" />
+        <input type="email" name="email" required />
       </label>
       <label>
         Password:
-        <input type="password" name="password" />
+        <input type="password" name="password" required />
       </label>
       <button type="submit">Log In</button>
     </form>
