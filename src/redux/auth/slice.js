@@ -64,13 +64,12 @@ const authSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      // Додати обробку fulfilled для register
-      .addCase(register.fulfilled, (state, action) => {
+      .addCase(login.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
       })
-      .addCase(login.fulfilled, (state, action) => {
+      .addCase(register.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
