@@ -142,14 +142,15 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-// Логіка виходу з системи
-export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
+// Запит на реєстрацію
+export const register = createAsyncThunk('auth/register', async (credentials, thunkAPI) => {
   try {
-    // Видаляємо токен із заголовків
-    delete axios.defaults.headers.common['Authorization'];
-    return; // Ви можете очищувати стан, наприклад, у slice
+    const response = await axios.post('/users/signup', credentials);
+    axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
+    return response.data; // Повернення даних користувача та токена
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
 });
+
 

@@ -64,19 +64,17 @@ const authSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      // Логіка реєстрації
+      // Додати обробку fulfilled для register
       .addCase(register.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
       })
-      // Логіка логіна
       .addCase(login.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
       })
-      // Логіка оновлення користувача
       .addCase(refreshUser.pending, (state) => {
         state.isRefreshing = true;
       })
