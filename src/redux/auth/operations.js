@@ -142,28 +142,15 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-// Запит на логін
+// Функція для логіна
 export const login = createAsyncThunk('auth/login', async (credentials, thunkAPI) => {
   try {
     const response = await axios.post('/users/login', credentials);
     axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
-    return response.data; // Повернення даних користувача та токена
+    return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
 });
-
-// Інші операції
-export const register = createAsyncThunk('auth/register', async (credentials, thunkAPI) => {
-  // Реалізація реєстрації
-});
-
-export const refreshUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
-  // Реалізація оновлення користувача
-});
-
-// Переконайтеся, що всі функції експортуються
-export { login, register, refreshUser };
-
 
 
