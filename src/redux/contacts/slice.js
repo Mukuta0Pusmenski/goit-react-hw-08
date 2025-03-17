@@ -41,6 +41,7 @@
 
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchContacts, addContact, deleteContact } from './operations';
+import { logout } from '../auth/operations';
 
 const contactsSlice = createSlice({
   name: 'contacts',
@@ -69,6 +70,9 @@ const contactsSlice = createSlice({
       })
       .addCase(deleteContact.fulfilled, (state, action) => {
         state.items = state.items.filter((contact) => contact.id !== action.payload);
+      })
+      .addCase(logout.fulfilled, (state) => {
+        state.items = []; // Очищення контактів після виходу
       });
   },
 });
